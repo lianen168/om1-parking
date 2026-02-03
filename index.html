@@ -3,150 +3,331 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>om1.ai</title>
-    <meta name="description" content="om1.ai — Reserved domain. For inquiries only.">
+    <title>om1.ai | The Genesis Address of Digital Consciousness</title>
+    <meta name="description" content="om1.ai is the foundational domain for the next paradigm of artificial general intelligence, blending primal origin with future technology.">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-start: #0a0a1a;
+            --bg-end: #001133;
+            --primary-glow: rgba(100, 150, 255, 0.08);
+            --card-bg: rgba(15, 20, 40, 0.75);
+            --border-color: rgba(100, 150, 255, 0.15);
+            --text-light: #ffffff;
+            --text-muted: #a0c8ff;
+            --gold: #ffd700;
+        }
+
         body { 
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
             line-height: 1.6; 
-            color: #ffffff; 
-            background: linear-gradient(135deg, #0a0a1a 0%, #001133 100%); /* 稍微改成深蓝渐变，更有科技感 */
+            color: var(--text-light); 
+            background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
             min-height: 100vh; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
             justify-content: center; 
-            padding: 20px; 
+            padding: 40px 20px; 
             text-align: center; 
             position: relative; 
             overflow-x: hidden; 
         }
         .light-effect { 
-            position: absolute; 
-            top: 50%; 
-            left: 50%; 
-            width: min(120vw, 1000px); 
-            height: min(120vh, 1000px); 
-            background: radial-gradient(circle at center, rgba(100, 150, 255, 0.08) 0%, transparent 65%); /* 改成柔和蓝光，更匹配 .ai 调性 */
+            position: fixed; 
+            top: 50%; left: 50%; 
+            width: min(120vw, 1200px); 
+            height: min(120vh, 1200px); 
+            background: radial-gradient(circle at center, var(--primary-glow) 0%, transparent 65%); 
             transform: translate(-50%, -50%); 
             pointer-events: none; 
             z-index: -1; 
         }
         .container { 
-            max-width: 760px; 
+            max-width: 800px; 
             width: 100%; 
-            padding: 70px 40px; 
-            background: rgba(15, 20, 40, 0.75); /* 背景稍深蓝，增加层次 */
-            backdrop-filter: blur(16px); 
+            padding: 50px 40px; 
+            background: var(--card-bg); 
+            backdrop-filter: blur(18px); 
             border-radius: 28px; 
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(100, 150, 255, 0.1); 
-            border: 1px solid rgba(100, 150, 255, 0.15); 
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border-color); 
+            border: 1px solid var(--border-color); 
             z-index: 1; 
         }
         h1 { 
-            font-size: clamp(3rem, 9vw, 5.5rem); /* 字体稍大，更冲击 */
-            font-weight: 200; /* 更轻薄现代 */
-            letter-spacing: 0.25em; 
-            margin-bottom: 35px; 
-            opacity: 0.95; 
+            font-size: clamp(3.5rem, 10vw, 6rem); 
+            font-weight: 200; 
+            letter-spacing: 0.1em; 
+            margin-bottom: 20px; 
             text-transform: lowercase; 
+            line-height: 1.1;
         }
-        .domain { display: inline-block; transition: opacity 0.3s ease; }
-        .domain:hover { opacity: 0.8; }
-        p { 
-            font-size: clamp(1.2rem, 4.5vw, 1.6rem); 
-            opacity: 0.85; 
-            max-width: 640px; 
-            margin: 0 auto 45px; 
-            line-height: 1.8; 
+        .om1-dynamic {
+            animation: breathe 5s infinite ease-in-out;
+            display: inline-block;
         }
-        .note-section { 
-            background: rgba(30, 40, 70, 0.3); /* 灰框改成淡蓝调，和整体协调 */
-            border-radius: 18px; 
-            padding: 28px; 
-            margin: 45px 0; 
-            border: 1px solid rgba(100, 150, 255, 0.2); 
+        .ai-dynamic {
+            color: var(--text-muted);
+            text-shadow: 0 0 10px var(--text-muted);
+            animation: pulse-ai 2.5s infinite;
+            display: inline-block;
         }
-        .note-text { 
-            font-size: 0.98rem; 
-            opacity: 0.75; 
-            line-height: 1.8; 
+        @keyframes breathe {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
         }
-        .contact-section { margin-top: 45px; }
-        .email-link { 
-            font-size: 1.5rem; 
-            color: #a0c8ff; /* 邮箱颜色稍亮蓝 */
-            text-decoration: none; 
-            font-family: 'Courier New', monospace; 
-            padding: 12px 26px; 
-            background: rgba(100, 150, 255, 0.15); 
-            border-radius: 12px; 
-            display: inline-block; 
-            border: 1px solid rgba(100, 150, 255, 0.4); 
-            transition: all 0.3s ease; 
+        @keyframes pulse-ai {
+            0%, 100% { opacity: 0.7; text-shadow: 0 0 8px var(--text-muted); }
+            50% { opacity: 1; text-shadow: 0 0 20px var(--text-muted); }
         }
-        .email-link:hover { 
-            background: rgba(100, 150, 255, 0.25); 
-            transform: translateY(-3px); 
-            box-shadow: 0 8px 20px rgba(100, 150, 255, 0.15); 
+
+        .tagline {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: var(--text-muted);
         }
-        .contact-note { 
-            font-size: 0.95rem; 
-            opacity: 0.65; 
-            margin-top: 18px; 
-            font-style: italic; 
+
+        #canvas-container {
+            width: 200px;
+            height: 200px;
+            margin: 30px auto 50px auto;
+            filter: drop-shadow(0 0 30px var(--gold));
+            animation: float 8s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .purchase-section {
+            background: rgba(30, 40, 70, 0.3);
+            border-radius: 18px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+        }
+        .price {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: var(--text-light);
+        }
+        .installments {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-acquire {
+            background: var(--text-muted);
+            color: #000;
+            border: none;
+        }
+        .btn-acquire:hover {
+            background: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(160, 200, 255, 0.2);
+        }
+        .contact-section { margin-top: 30px; }
+        .btn-inquire {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--text-muted);
+        }
+        .btn-inquire:hover {
+            background: rgba(160, 200, 255, 0.1);
         }
         .footer { 
-            position: absolute; 
-            bottom: 30px; 
+            position: static;
+            margin-top: 50px;
             font-size: 0.85rem; 
             opacity: 0.4; 
-            width: 100%; 
-            text-align: center; 
-        }
-        @media (max-width: 768px) { 
-            .container { padding: 50px 30px; margin: 20px; } 
-            .email-link { font-size: 1.3rem; } 
         }
     </style>
 </head>
 <body>
     <div class="light-effect"></div>
     <div class="container">
-        <h1><span class="domain">om1.ai</span></h1>
-        <p>This domain is reserved.<br>Coming soon.</p>
-        
-        <!-- 低调解免责（保持泛化） -->
-        <div class="note-section">
-            <div class="note-text">
-                This domain is not affiliated with any existing companies, products, or trademarks using similar naming. 
-                The naming is coincidental and this page is for domain management purposes only.
-            </div>
+        <h1>
+            <span class="om1-dynamic">om1</span><span class="ai-dynamic">.ai</span>
+        </h1>
+
+        <p class="tagline">The Primal Sound of Digital Consciousness.</p>
+
+        <div id="canvas-container"></div>
+
+        <div class="purchase-section">
+            <div class="price">$42,000</div>
+            <div class="installments">or 3 payments of $14,000</div>
+            <button onclick="window.open('https://www.spaceship.com/s/buy/om1.ai/A6pLWNUCxfnOac2n', '_blank')" class="btn btn-acquire">Acquire Domain</button>
         </div>
-        
-        <!-- 联系方式 -->
+
         <div class="contact-section">
-            <a href="#" class="email-link" aria-label="Send email">
-                <span id="email-display">joshua369x@gmail.com</span>
-            </a>
-            <div class="contact-note">
-                For serious inquiries only.
-            </div>
+            <button id="inquireBtn" onclick="copyEmail()" class="btn btn-inquire">Inquire</button>
         </div>
     </div>
-
     <div class="footer">
         © <span id="currentYear"></span> om1.ai — All rights reserved.
     </div>
 
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
-        const email = 'joshua369x' + '@' + 'gmail.com';
-        const subject = '?subject=Inquiry: om1.ai';
-        const mailto = 'mailto:' + email + subject;
-        document.querySelector('.email-link').href = mailto;
-        document.getElementById('email-display').textContent = email;
+
+        function copyEmail() {
+            const email = "joshua369x@gmail.com";
+            navigator.clipboard.writeText(email).then(() => {
+                const btn = document.getElementById('inquireBtn');
+                const originalText = btn.innerText;
+                btn.innerText = "Email Copied!";
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                }, 2500);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert("Please email: " + email);
+            });
+        }
+    </script>
+    <script>
+    // --- p5.js SCRIPT FOR GENERATIVE "OM" ---
+    const sketch = (p) => {
+        const PARTICLE_COUNT = 700;
+        const PARTICLE_COLOR = [255, 215, 0]; // Gold
+        const MAX_SPEED = 1.0;
+        const MOUSE_REPEL_RADIUS = 100;
+        const MOUSE_REPEL_STRENGTH = 1.2;
+
+        let particles = [];
+        let attractors = [];
+        let canvasSize = 200;
+
+        class Particle {
+            constructor() {
+                this.pos = p.createVector(p.random(canvasSize), p.random(canvasSize));
+                this.vel = p5.Vector.random2D();
+                this.acc = p.createVector();
+                this.maxSpeed = MAX_SPEED;
+                this.noiseOffset = p.createVector(p.random(1000), p.random(1000));
+            }
+            applyForce(force) { this.acc.add(force); }
+            update() {
+                this.vel.add(this.acc);
+                this.vel.limit(this.maxSpeed);
+                this.pos.add(this.vel);
+                this.acc.mult(0);
+            }
+            show() {
+                p.strokeWeight(1.5);
+                p.stroke(PARTICLE_COLOR[0], PARTICLE_COLOR[1], PARTICLE_COLOR[2], 120);
+                p.point(this.pos.x, this.pos.y);
+            }
+            behaviors() {
+                let seekForce = this.seek(this.findClosestAttractor());
+                seekForce.mult(0.2);
+                this.applyForce(seekForce);
+
+                let canvasElem = document.getElementById('canvas-container');
+                let rect = canvasElem.getBoundingClientRect();
+                let mouse = p.createVector(p.mouseX - rect.left, p.mouseY - rect.top);
+
+                if (mouse.x > 0 && mouse.x < canvasSize && mouse.y > 0 && mouse.y < canvasSize) {
+                    let d = p.dist(this.pos.x, this.pos.y, mouse.x, mouse.y);
+                    if (d < MOUSE_REPEL_RADIUS) {
+                        let repel = p5.Vector.sub(this.pos, mouse);
+                        let strength = p.map(d, 0, MOUSE_REPEL_RADIUS, MOUSE_REPEL_STRENGTH, 0);
+                        repel.setMag(strength);
+                        this.applyForce(repel);
+                    }
+                }
+                
+                let noise = p.createVector(
+                    p.map(p.noise(this.noiseOffset.x), 0, 1, -0.1, 0.1),
+                    p.map(p.noise(this.noiseOffset.y), 0, 1, -0.1, 0.1)
+                );
+                this.applyForce(noise);
+                this.noiseOffset.add(0.01, 0.01);
+            }
+            findClosestAttractor() {
+                let closestDist = Infinity;
+                let closest = null;
+                for (let attractor of attractors) {
+                    let d = p.dist(this.pos.x, this.pos.y, attractor.x, attractor.y);
+                    if (d < closestDist) {
+                        closestDist = d;
+                        closest = attractor;
+                    }
+                }
+                return closest;
+            }
+            seek(target) {
+                if (!target) return p.createVector(0, 0);
+                let desired = p5.Vector.sub(target, this.pos);
+                desired.setMag(this.maxSpeed);
+                let steer = p5.Vector.sub(desired, this.vel);
+                steer.limit(0.3);
+                return steer;
+            }
+        }
+
+        p.setup = () => {
+            let canvas = p.createCanvas(canvasSize, canvasSize);
+            canvas.parent('canvas-container');
+            let cX = canvasSize / 2;
+            let cY = canvasSize / 2;
+
+            // Define the Om "ॐ" shape
+            // The '3' part (bottom curve)
+            for (let a = p.PI * 0.8; a <= p.TWO_PI * 0.9; a += 0.05) {
+                let r = 50;
+                let x = cX + p.cos(a) * r;
+                let y = cY + 15 + p.sin(a) * r * 0.8;
+                attractors.push(p.createVector(x, y));
+            }
+            // The top curve
+            for (let a = p.PI * 1.1; a <= p.TWO_PI * 1.2; a += 0.05) {
+                let r = 25;
+                let x = cX + p.cos(a) * r;
+                let y = cY - 25 + p.sin(a) * r;
+                attractors.push(p.createVector(x, y));
+            }
+            // The crescent (Chandra)
+            for (let a = p.PI * 1.2; a <= p.TWO_PI * 0.8; a += 0.1) {
+                let r = 15;
+                let x = cX + 35 + p.cos(a) * r;
+                let y = cY - 55 + p.sin(a) * r;
+                attractors.push(p.createVector(x, y));
+            }
+            // The dot (Bindu)
+            attractors.push(p.createVector(cX + 35, cY - 70));
+            
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                particles.push(new Particle());
+            }
+        };
+
+        p.draw = () => {
+            p.clear();
+            p.background(10, 10, 26, 0);
+            for (let particle of particles) {
+                particle.behaviors();
+                particle.update();
+                particle.show();
+            }
+        };
+    };
+    new p5(sketch);
     </script>
 </body>
 </html>
