@@ -78,7 +78,9 @@
         .btn { display: inline-block; padding: 15px 40px; font-size: 1.2rem; font-weight: bold; text-decoration: none; text-transform: uppercase; border-radius: 12px; transition: all 0.3s ease; cursor: pointer; }
         .btn-acquire { background: var(--text-muted); color: #000; border: none; }
         .btn-acquire:hover { background: #fff; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(160, 200, 255, 0.2); }
-
+        .contact-section { margin-top: 30px; }
+        .btn-inquire { background: transparent; color: var(--text-muted); border: 1px solid var(--text-muted); }
+        .btn-inquire:hover { background: rgba(160, 200, 255, 0.1); }
         /* --- Offer Form Styles --- */
         .offer-form-section { margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--border-color); }
         .offer-title { font-size: 1.5rem; font-weight: 500; color: var(--text-muted); margin-bottom: 25px; }
@@ -89,9 +91,9 @@
         }
         #offer-form input::placeholder { color: var(--text-muted); opacity: 0.6; }
         #offer-form input:focus { outline: none; border-color: var(--text-muted); box-shadow: 0 0 15px rgba(160, 200, 255, 0.2); }
-        .btn-inquire { background: transparent; color: var(--text-muted); border: 1px solid var(--text-muted); width: 100%; }
-        .btn-inquire:hover { background: rgba(160, 200, 255, 0.1); }
-        .btn-inquire:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-offer-submit { background: transparent; color: var(--text-muted); border: 1px solid var(--text-muted); width: 100%; }
+        .btn-offer-submit:hover { background: rgba(160, 200, 255, 0.1); }
+        .btn-offer-submit:disabled { opacity: 0.5; cursor: not-allowed; }
         #form-status { margin-top: 20px; font-size: 0.9rem; font-weight: bold; height: 1.2rem; }
         #form-status.success { color: var(--success); }
         #form-status.error { color: var(--error); }
@@ -106,15 +108,20 @@
         </h1>
         <p class="tagline">The Primal Sound of Digital Consciousness.</p>
         <div id="canvas-container"></div>
+
         <div class="purchase-section">
             <div class="price">$42,000</div>
             <div class="installments">or 3 payments of $14,000</div>
             <button onclick="window.open('https://www.spaceship.com/s/buy/om1.ai/A6pLWNUCxfnOac2n', '_blank')" class="btn btn-acquire">Acquire Domain</button>
         </div>
 
+        <div class="contact-section">
+            <button id="inquireBtn" onclick="copyEmail()" class="btn btn-inquire">Inquire</button>
+        </div>
+        
         <!-- Offer Form Section -->
         <div class="offer-form-section">
-            <h3 class="offer-title">Make an Offer</h3>
+            <h3 class="offer-title">Or Make a Formal Offer</h3>
             <form id="offer-form" action="https://formsubmit.co/joshua369x@gmail.com" method="POST">
                 <!-- FormSubmit Settings -->
                 <input type="hidden" name="_subject" value="New Offer for om1.ai">
@@ -124,7 +131,7 @@
                 <input type="number" name="offer_amount" placeholder="Your Offer in USD" required>
                 <input type="email" name="email" placeholder="Your Email Address" required>
                 
-                <button type="submit" class="btn btn-inquire">Submit Offer</button>
+                <button type="submit" class="btn btn-offer-submit">Submit Offer</button>
             </form>
             <p id="form-status"></p>
         </div>
@@ -136,6 +143,21 @@
 
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        function copyEmail() {
+            const email = "joshua369x@gmail.com";
+            navigator.clipboard.writeText(email).then(() => {
+                const btn = document.getElementById('inquireBtn');
+                const originalText = btn.innerText;
+                btn.innerText = "Email Copied!";
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                }, 2500);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert("Please email: " + email);
+            });
+        }
     </script>
     
     <script>
