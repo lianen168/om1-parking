@@ -17,8 +17,9 @@
             --text-light: #ffffff;
             --text-muted: #a0c8ff;
             --gold: #ffd700;
+            --success: #34D399;
+            --error: #F87171;
         }
-
         body { 
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
             line-height: 1.6; 
@@ -63,98 +64,38 @@
             text-transform: lowercase; 
             line-height: 1.1;
         }
-        .om1-dynamic {
-            animation: breathe 5s infinite ease-in-out;
-            display: inline-block;
-        }
-        .ai-dynamic {
-            color: var(--text-muted);
-            text-shadow: 0 0 10px var(--text-muted);
-            animation: pulse-ai 2.5s infinite;
-            display: inline-block;
-        }
-        @keyframes breathe {
-            0%, 100% { opacity: 0.8; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.02); }
-        }
-        @keyframes pulse-ai {
-            0%, 100% { opacity: 0.7; text-shadow: 0 0 8px var(--text-muted); }
-            50% { opacity: 1; text-shadow: 0 0 20px var(--text-muted); }
-        }
-
-        .tagline {
-            font-size: 1.1rem;
-            opacity: 0.8;
-            max-width: 600px;
-            margin: 0 auto 40px;
-            color: var(--text-muted);
-        }
-
-        #canvas-container {
-            width: 200px;
-            height: 200px;
-            margin: 30px auto 50px auto;
-            filter: drop-shadow(0 0 30px var(--gold));
-            animation: float 8s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
+        .om1-dynamic { animation: breathe 5s infinite ease-in-out; display: inline-block; }
+        .ai-dynamic { color: var(--text-muted); text-shadow: 0 0 10px var(--text-muted); animation: pulse-ai 2.5s infinite; display: inline-block; }
+        @keyframes breathe { 0%, 100% { opacity: 0.8; transform: scale(1); } 50% { opacity: 1; transform: scale(1.02); } }
+        @keyframes pulse-ai { 0%, 100% { opacity: 0.7; text-shadow: 0 0 8px var(--text-muted); } 50% { opacity: 1; text-shadow: 0 0 20px var(--text-muted); } }
+        .tagline { font-size: 1.1rem; opacity: 0.8; max-width: 600px; margin: 0 auto 40px; color: var(--text-muted); }
+        #canvas-container { width: 200px; height: 200px; margin: 30px auto 50px auto; filter: drop-shadow(0 0 30px var(--gold)); animation: float 8s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
         
-        .purchase-section {
-            background: rgba(30, 40, 70, 0.3);
-            border-radius: 18px;
-            padding: 30px;
-            margin: 40px 0;
-            border: 1px solid var(--border-color);
+        .purchase-section { background: rgba(30, 40, 70, 0.3); border-radius: 18px; padding: 30px; margin: 40px 0; border: 1px solid var(--border-color); }
+        .price { font-size: 2.8rem; font-weight: bold; color: var(--text-light); }
+        .installments { font-size: 1rem; color: var(--text-muted); margin-bottom: 25px; }
+        .btn { display: inline-block; padding: 15px 40px; font-size: 1.2rem; font-weight: bold; text-decoration: none; text-transform: uppercase; border-radius: 12px; transition: all 0.3s ease; cursor: pointer; }
+        .btn-acquire { background: var(--text-muted); color: #000; border: none; }
+        .btn-acquire:hover { background: #fff; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(160, 200, 255, 0.2); }
+
+        /* --- Offer Form Styles --- */
+        .offer-form-section { margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--border-color); }
+        .offer-title { font-size: 1.5rem; font-weight: 500; color: var(--text-muted); margin-bottom: 25px; }
+        #offer-form { display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: 0 auto; }
+        #offer-form input {
+            width: 100%; padding: 15px; font-size: 1rem; border-radius: 12px; border: 1px solid var(--border-color);
+            background: rgba(10, 10, 26, 0.5); color: var(--text-light); text-align: center; transition: all 0.3s ease;
         }
-        .price {
-            font-size: 2.8rem;
-            font-weight: bold;
-            color: var(--text-light);
-        }
-        .installments {
-            font-size: 1rem;
-            color: var(--text-muted);
-            margin-bottom: 25px;
-        }
-        .btn {
-            display: inline-block;
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-decoration: none;
-            text-transform: uppercase;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .btn-acquire {
-            background: var(--text-muted);
-            color: #000;
-            border: none;
-        }
-        .btn-acquire:hover {
-            background: #fff;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(160, 200, 255, 0.2);
-        }
-        .contact-section { margin-top: 30px; }
-        .btn-inquire {
-            background: transparent;
-            color: var(--text-muted);
-            border: 1px solid var(--text-muted);
-        }
-        .btn-inquire:hover {
-            background: rgba(160, 200, 255, 0.1);
-        }
-        .footer { 
-            position: static;
-            margin-top: 50px;
-            font-size: 0.85rem; 
-            opacity: 0.4; 
-        }
+        #offer-form input::placeholder { color: var(--text-muted); opacity: 0.6; }
+        #offer-form input:focus { outline: none; border-color: var(--text-muted); box-shadow: 0 0 15px rgba(160, 200, 255, 0.2); }
+        .btn-inquire { background: transparent; color: var(--text-muted); border: 1px solid var(--text-muted); width: 100%; }
+        .btn-inquire:hover { background: rgba(160, 200, 255, 0.1); }
+        .btn-inquire:disabled { opacity: 0.5; cursor: not-allowed; }
+        #form-status { margin-top: 20px; font-size: 0.9rem; font-weight: bold; height: 1.2rem; }
+        #form-status.success { color: var(--success); }
+        #form-status.error { color: var(--error); }
+        .footer { position: static; margin-top: 50px; font-size: 0.85rem; opacity: 0.4; }
     </style>
 </head>
 <body>
@@ -163,20 +104,31 @@
         <h1>
             <span class="om1-dynamic">om1</span><span class="ai-dynamic">.ai</span>
         </h1>
-
         <p class="tagline">The Primal Sound of Digital Consciousness.</p>
-
         <div id="canvas-container"></div>
-
         <div class="purchase-section">
             <div class="price">$42,000</div>
             <div class="installments">or 3 payments of $14,000</div>
             <button onclick="window.open('https://www.spaceship.com/s/buy/om1.ai/A6pLWNUCxfnOac2n', '_blank')" class="btn btn-acquire">Acquire Domain</button>
         </div>
 
-        <div class="contact-section">
-            <button id="inquireBtn" onclick="copyEmail()" class="btn btn-inquire">Inquire</button>
+        <!-- Offer Form Section -->
+        <div class="offer-form-section">
+            <h3 class="offer-title">Make an Offer</h3>
+            <form id="offer-form" action="https://formsubmit.co/joshua369x@gmail.com" method="POST">
+                <!-- FormSubmit Settings -->
+                <input type="hidden" name="_subject" value="New Offer for om1.ai">
+                <input type="text" name="_honey" style="display:none">
+                <input type="hidden" name="_captcha" value="false">
+
+                <input type="number" name="offer_amount" placeholder="Your Offer in USD" required>
+                <input type="email" name="email" placeholder="Your Email Address" required>
+                
+                <button type="submit" class="btn btn-inquire">Submit Offer</button>
+            </form>
+            <p id="form-status"></p>
         </div>
+
     </div>
     <div class="footer">
         © <span id="currentYear"></span> om1.ai — All rights reserved.
@@ -184,22 +136,78 @@
 
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+    
+    <script>
+    // --- RELIABLE AJAX FORM SUBMISSION LOGIC ---
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('offer-form');
+        const statusDiv = document.getElementById('form-status');
+        
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const submitButton = form.querySelector('button[type="submit"]');
+                const originalButtonText = submitButton.innerHTML;
+                
+                // 1. Start submission: Update UI
+                submitButton.innerHTML = 'Sending...';
+                submitButton.disabled = true;
+                statusDiv.textContent = 'Establishing secure connection...';
+                statusDiv.className = '';
 
-        function copyEmail() {
-            const email = "joshua369x@gmail.com";
-            navigator.clipboard.writeText(email).then(() => {
-                const btn = document.getElementById('inquireBtn');
-                const originalText = btn.innerText;
-                btn.innerText = "Email Copied!";
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                }, 2500);
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
-                alert("Please email: " + email);
+                const formData = new FormData(form);
+                
+                // 2. Key step: Force FormSubmit's AJAX endpoint
+                let actionUrl = form.action;
+                if (!actionUrl.includes('/ajax/')) {
+                    actionUrl = actionUrl.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+                }
+                
+                fetch(actionUrl, {
+                    method: "POST",
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                })
+                .then(response => {
+                    if (response.ok) return response.json();
+                    throw new Error('Network response failure.');
+                })
+                .then(data => {
+                    // 3. Handle success
+                    if (data.success) {
+                        statusDiv.textContent = "Offer sent successfully! We will be in touch.";
+                        statusDiv.className = 'success';
+                        form.reset();
+                        submitButton.innerHTML = "Sent!";
+                    } else {
+                        throw new Error(data.message || 'Server-side submission error.');
+                    }
+                })
+                .catch(error => {
+                    // 4. Handle errors
+                    statusDiv.textContent = "An error occurred. Please try again.";
+                    statusDiv.className = 'error';
+                    console.error('Form Submission Error:', error);
+                    submitButton.innerHTML = originalButtonText;
+                    submitButton.disabled = false;
+                })
+                .finally(() => {
+                    // 5. Auto-reset the UI
+                    setTimeout(() => {
+                        if (submitButton.innerHTML === "Sent!") {
+                            submitButton.innerHTML = originalButtonText;
+                            submitButton.disabled = false;
+                        }
+                        statusDiv.textContent = '';
+                    }, 5000);
+                });
             });
         }
+    });
     </script>
+
     <script>
     // --- p5.js SCRIPT FOR GENERATIVE "OM" ---
     const sketch = (p) => {
@@ -208,11 +216,9 @@
         const MAX_SPEED = 1.0;
         const MOUSE_REPEL_RADIUS = 100;
         const MOUSE_REPEL_STRENGTH = 1.2;
-
         let particles = [];
         let attractors = [];
         let canvasSize = 200;
-
         class Particle {
             constructor() {
                 this.pos = p.createVector(p.random(canvasSize), p.random(canvasSize));
@@ -237,11 +243,9 @@
                 let seekForce = this.seek(this.findClosestAttractor());
                 seekForce.mult(0.2);
                 this.applyForce(seekForce);
-
                 let canvasElem = document.getElementById('canvas-container');
                 let rect = canvasElem.getBoundingClientRect();
                 let mouse = p.createVector(p.mouseX - rect.left, p.mouseY - rect.top);
-
                 if (mouse.x > 0 && mouse.x < canvasSize && mouse.y > 0 && mouse.y < canvasSize) {
                     let d = p.dist(this.pos.x, this.pos.y, mouse.x, mouse.y);
                     if (d < MOUSE_REPEL_RADIUS) {
@@ -280,13 +284,11 @@
                 return steer;
             }
         }
-
         p.setup = () => {
             let canvas = p.createCanvas(canvasSize, canvasSize);
             canvas.parent('canvas-container');
             let cX = canvasSize / 2;
             let cY = canvasSize / 2;
-
             // Define the Om "ॐ" shape
             // The '3' part (bottom curve)
             for (let a = p.PI * 0.8; a <= p.TWO_PI * 0.9; a += 0.05) {
@@ -316,7 +318,6 @@
                 particles.push(new Particle());
             }
         };
-
         p.draw = () => {
             p.clear();
             p.background(10, 10, 26, 0);
