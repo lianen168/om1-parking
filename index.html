@@ -94,7 +94,7 @@
         .btn-offer-submit { background: transparent; color: var(--text-muted); border: 1px solid var(--text-muted); width: 100%; }
         .btn-offer-submit:hover { background: rgba(160, 200, 255, 0.1); }
         .btn-offer-submit:disabled { opacity: 0.5; cursor: not-allowed; }
-        #form-status { margin-top: 20px; font-size: 0.9rem; font-weight: bold; height: 1.2rem; }
+        #form-status { margin-top: 20px; font-size: 0.9rem; font-weight: bold; height: 1.2rem; display: none; }
         #form-status.success { color: var(--success); }
         #form-status.error { color: var(--error); }
         .footer { position: static; margin-top: 50px; font-size: 0.85rem; opacity: 0.4; }
@@ -122,7 +122,7 @@
         <!-- Offer Form Section -->
         <div class="offer-form-section">
             <h3 class="offer-title">Or Make a Formal Offer</h3>
-            <form id="offer-form" action="https://formsubmit.co/joshua369x@gmail.com" method="POST">
+            <form id="offer-form" action="https://formsubmit.co/zlqsl2018@gmail.com" method="POST">
                 <!-- FormSubmit Settings -->
                 <input type="hidden" name="_subject" value="New Offer for om1.ai">
                 <input type="text" name="_honey" style="display:none">
@@ -161,8 +161,8 @@
     </script>
     
     <script>
-    // --- RELIABLE AJAX FORM SUBMISSION LOGIC ---
-    document.addEventListener('DOMContentLoaded', function() {
+    // --- RELIABLE AJAX FORM LOGIC (Based on 1A1z.ai reference) ---
+    function initOfferForm() {
         const form = document.getElementById('offer-form');
         const statusDiv = document.getElementById('form-status');
         
@@ -170,14 +170,15 @@
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                const submitButton = form.querySelector('button[type="submit"]');
+                const submitButton = form.querySelector('.btn-offer-submit');
                 const originalButtonText = submitButton.innerHTML;
                 
                 // 1. Start submission: Update UI
                 submitButton.innerHTML = 'Sending...';
                 submitButton.disabled = true;
-                statusDiv.textContent = 'Establishing secure connection...';
+                statusDiv.style.display = 'block';
                 statusDiv.className = '';
+                statusDiv.textContent = 'Establishing secure connection...';
 
                 const formData = new FormData(form);
                 
@@ -192,20 +193,13 @@
                     body: formData,
                     headers: { 'Accept': 'application/json' }
                 })
-                .then(response => {
-                    if (response.ok) return response.json();
-                    throw new Error('Network response failure.');
-                })
+                .then(response => response.json())
                 .then(data => {
                     // 3. Handle success
-                    if (data.success) {
-                        statusDiv.textContent = "Offer sent successfully! We will be in touch.";
-                        statusDiv.className = 'success';
-                        form.reset();
-                        submitButton.innerHTML = "Sent!";
-                    } else {
-                        throw new Error(data.message || 'Server-side submission error.');
-                    }
+                    statusDiv.textContent = "Offer sent successfully! We will be in touch.";
+                    statusDiv.className = 'success';
+                    form.reset();
+                    submitButton.innerHTML = "Sent!";
                 })
                 .catch(error => {
                     // 4. Handle errors
@@ -222,11 +216,15 @@
                             submitButton.innerHTML = originalButtonText;
                             submitButton.disabled = false;
                         }
-                        statusDiv.textContent = '';
+                        statusDiv.style.display = 'none';
                     }, 5000);
                 });
             });
         }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initOfferForm();
     });
     </script>
 
