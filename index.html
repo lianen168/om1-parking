@@ -97,7 +97,19 @@
         #form-status { margin-top: 20px; font-size: 0.9rem; font-weight: bold; height: 1.2rem; display: none; }
         #form-status.success { color: var(--success); }
         #form-status.error { color: var(--error); }
-        .footer { position: static; margin-top: 50px; font-size: 0.85rem; opacity: 0.4; }
+        /* Disclaimer styles */
+        .legal-disclaimer {
+            margin-top: 45px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.7rem;
+            line-height: 1.4;
+            color: var(--text-muted);
+            opacity: 0.65;
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+        .footer { position: static; margin-top: 30px; font-size: 0.85rem; opacity: 0.4; text-align: center; }
     </style>
 </head>
 <body>
@@ -110,9 +122,9 @@
         <div id="canvas-container"></div>
 
         <div class="purchase-section">
-            <div class="price">$42,000</div>
-            <div class="installments">or 3 payments of $14,000</div>
-            <button onclick="window.open('https://www.spaceship.com/s/buy/om1.ai/A6pLWNUCxfnOac2n', '_blank')" class="btn btn-acquire">Acquire Domain</button>
+            <div class="price">$111,111</div>
+            <div class="installments">or 11 payments of $10,101</div>
+            <button onclick="window.open('https://www.spaceship.com/s/buy/om1.ai/VP03rNem5mQRRc5p', '_blank')" class="btn btn-acquire">Acquire Domain</button>
         </div>
 
         <div class="contact-section">
@@ -136,6 +148,10 @@
             <p id="form-status"></p>
         </div>
 
+        <!-- Legal Disclaimer Section (Required) -->
+        <div class="legal-disclaimer">
+            <strong>LEGAL DISCLAIMER:</strong> om1.ai operates as an independent, premium domain property explicitly curated for artificial intelligence ecosystems and computational architectures. It maintains absolutely no corporate affiliation, connection, or sponsorship with Terabase Energy, Inc.
+        </div>
     </div>
     <div class="footer">
         © <span id="currentYear"></span> om1.ai — All rights reserved.
@@ -161,7 +177,7 @@
     </script>
     
     <script>
-    // --- RELIABLE AJAX FORM LOGIC (Based on 1A1z.ai reference) ---
+    // --- RELIABLE AJAX FORM LOGIC (Secure offer handling) ---
     function initOfferForm() {
         const form = document.getElementById('offer-form');
         const statusDiv = document.getElementById('form-status');
@@ -173,7 +189,7 @@
                 const submitButton = form.querySelector('.btn-offer-submit');
                 const originalButtonText = submitButton.innerHTML;
                 
-                // 1. Start submission: Update UI
+                // Update UI: sending state
                 submitButton.innerHTML = 'Sending...';
                 submitButton.disabled = true;
                 statusDiv.style.display = 'block';
@@ -182,7 +198,7 @@
 
                 const formData = new FormData(form);
                 
-                // 2. Key step: Force FormSubmit's AJAX endpoint
+                // Force FormSubmit's AJAX endpoint for seamless submission
                 let actionUrl = form.action;
                 if (!actionUrl.includes('/ajax/')) {
                     actionUrl = actionUrl.replace('formsubmit.co/', 'formsubmit.co/ajax/');
@@ -195,14 +211,14 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    // 3. Handle success
+                    // Success
                     statusDiv.textContent = "Offer sent successfully! We will be in touch.";
                     statusDiv.className = 'success';
                     form.reset();
                     submitButton.innerHTML = "Sent!";
                 })
                 .catch(error => {
-                    // 4. Handle errors
+                    // Error
                     statusDiv.textContent = "An error occurred. Please try again.";
                     statusDiv.className = 'error';
                     console.error('Form Submission Error:', error);
@@ -210,7 +226,7 @@
                     submitButton.disabled = false;
                 })
                 .finally(() => {
-                    // 5. Auto-reset the UI
+                    // Auto-reset UI after 5 seconds
                     setTimeout(() => {
                         if (submitButton.innerHTML === "Sent!") {
                             submitButton.innerHTML = originalButtonText;
@@ -229,16 +245,17 @@
     </script>
 
     <script>
-    // --- p5.js SCRIPT FOR GENERATIVE "OM" ---
+    // --- P5.JS GENERATIVE "OM" PARTICLE ORBIT (Digital Consciousness Visualization) ---
     const sketch = (p) => {
         const PARTICLE_COUNT = 700;
-        const PARTICLE_COLOR = [255, 215, 0]; // Gold
+        const PARTICLE_COLOR = [255, 215, 0]; // Gold essence
         const MAX_SPEED = 1.0;
         const MOUSE_REPEL_RADIUS = 100;
         const MOUSE_REPEL_STRENGTH = 1.2;
         let particles = [];
         let attractors = [];
         let canvasSize = 200;
+        
         class Particle {
             constructor() {
                 this.pos = p.createVector(p.random(canvasSize), p.random(canvasSize));
@@ -304,40 +321,43 @@
                 return steer;
             }
         }
+        
         p.setup = () => {
             let canvas = p.createCanvas(canvasSize, canvasSize);
             canvas.parent('canvas-container');
             let cX = canvasSize / 2;
             let cY = canvasSize / 2;
-            // Define the Om "ॐ" shape
-            // The '3' part (bottom curve)
+            
+            // Construct the sacred "Om (ॐ)" attractor field
+            // Lower arc (3-shape)
             for (let a = p.PI * 0.8; a <= p.TWO_PI * 0.9; a += 0.05) {
                 let r = 50;
                 let x = cX + p.cos(a) * r;
                 let y = cY + 15 + p.sin(a) * r * 0.8;
                 attractors.push(p.createVector(x, y));
             }
-            // The top curve
+            // Upper curve
             for (let a = p.PI * 1.1; a <= p.TWO_PI * 1.2; a += 0.05) {
                 let r = 25;
                 let x = cX + p.cos(a) * r;
                 let y = cY - 25 + p.sin(a) * r;
                 attractors.push(p.createVector(x, y));
             }
-            // The crescent (Chandra)
+            // Crescent (Chandra)
             for (let a = p.PI * 1.2; a <= p.TWO_PI * 0.8; a += 0.1) {
                 let r = 15;
                 let x = cX + 35 + p.cos(a) * r;
                 let y = cY - 55 + p.sin(a) * r;
                 attractors.push(p.createVector(x, y));
             }
-            // The dot (Bindu)
+            // Central Bindu (dot)
             attractors.push(p.createVector(cX + 35, cY - 70));
             
             for (let i = 0; i < PARTICLE_COUNT; i++) {
                 particles.push(new Particle());
             }
         };
+        
         p.draw = () => {
             p.clear();
             p.background(10, 10, 26, 0);
